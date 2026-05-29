@@ -7,7 +7,7 @@ const items = [
   { to: "/sos", label: "SOS", icon: Siren, danger: true },
   { to: "/community", label: "Community", icon: Users },
   { to: "/reports", label: "Reports", icon: BarChart3 },
-] as const;
+] as Array<{ to: "/" | "/trips" | "/sos" | "/community" | "/reports"; label: string; icon: typeof Home; danger?: boolean }>;
 
 export function BottomNav() {
   const path = useRouterState({ select: (s) => s.location.pathname });
