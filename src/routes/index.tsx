@@ -1,29 +1,35 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { MobileShell } from "@/components/MobileShell";
+import { StatusBar } from "@/components/cockpit/StatusBar";
+import { DestinationSearch } from "@/components/cockpit/DestinationSearch";
+import { CockpitMap } from "@/components/cockpit/CockpitMap";
+import { RouteToggle } from "@/components/cockpit/RouteToggle";
+import { EmergencyTrio } from "@/components/cockpit/EmergencyTrio";
+import { InfoCards } from "@/components/cockpit/InfoCards";
+import { VehiclePanel } from "@/components/cockpit/VehiclePanel";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Your App" },
-      { name: "description", content: "Replace this with a one-sentence description of your app." },
-      { property: "og:title", content: "Your App" },
-      { property: "og:description", content: "Replace this with a one-sentence description of your app." },
+      { title: "Roxzave AI — Road Safety Cockpit" },
+      { name: "description", content: "AI-powered road safety, emergency response, and women safety platform for riders, drivers, and families." },
+      { property: "og:title", content: "Roxzave AI — Road Safety Cockpit" },
+      { property: "og:description", content: "Prevent accidents, survive emergencies, and travel safer with the Roxzave AI cockpit." },
     ],
   }),
-  component: Index,
+  component: Home,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
+function Home() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <MobileShell>
+      <StatusBar />
+      <DestinationSearch />
+      <CockpitMap />
+      <RouteToggle />
+      <EmergencyTrio />
+      <VehiclePanel />
+      <InfoCards />
+    </MobileShell>
   );
 }
