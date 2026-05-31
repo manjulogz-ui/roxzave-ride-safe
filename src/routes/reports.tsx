@@ -1,72 +1,149 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { useQuery } from "@tanstack/react-query";
 import { MobileShell } from "@/components/MobileShell";
-import { Gauge, Fuel, ShieldCheck, AlertTriangle, Trophy } from "lucide-react";
+import { Gauge, ShieldCheck, AlertTriangle, Trophy } from "lucide-react";
+import { api } from "@/lib/api/client";
+import { requireAuth } from "@/lib/auth/route-guard";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export const Route = createFileRoute("/reports")({
-  head: () => ({ meta: [{ title: "Reports — Roxzave AI" }, { name: "description", content: "Safety analytics, fuel cost, crash reports, and community impact." }] }),
+  beforeLoad: requireAuth,
+  head: () => ({
+    meta: [
+      { title: "Reports — Roxzave AI" },
+      { name: "description", content: "Safety analytics from your trips and devices." },
+    ],
+  }),
   component: ReportsPage,
 });
 
 function ReportsPage() {
+  const { data: driver, isLoading } = useQuery({
+    queryKey: ["analytics-driver"],
+    queryFn: async () => (await api.get("/api/analytics/driver")).data as {
+      safety_score: number;
+      total_trips: number;
+      total_distance_km: number;
+      weekly_trend: string;
+    },
+  });
+
+  const { data: safety } = useQuery({
+    queryKey: ["analytics-safety"],
+    queryFn: async () => (await api.get("/api/analytics/safety")).data as {
+      harsh_braking_total: number;
+      scores: { score: number; date: string }[];
+    },
+  });
+
+  const { data: drowsy } = useQuery({
+    queryKey: ["drowsiness-analytics"],
+    queryFn: async () => (await api.get("/api/drowsiness/analytics")).data as { total_events: number; high_alerts: number },
+  });
+
+  const { data: crash } = useQuery({
+    queryKey: ["crash-analytics"],
+    queryFn: async () => (await api.get("/api/crash/analytics")).data as { total_crashes: number; severe_events: number },
+  });
+
+  const { data: trends } = useQuery({
+    queryKey: ["analytics-trends"],
+    queryFn: async () => (await api.get("/api/analytics/trends")).data as {
+      ride_trends: { date: string; distance_km: number; score: number }[];
+      rewards_trends: { date: string; points: number; type: string }[];
+    },
+  });
+
+  const scores = safety?.scores ?? [];
+  const sparkPoints =
+    scores.length > 1
+      ? scores
+          .map((s, i) => `${(i / (scores.length - 1)) * 300},${60 - (s.score / 100) * 50}`)
+          .join(" L")
+      : "0,40 L300,40";
+
   return (
     <MobileShell>
       <div className="pt-2">
-        <p className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">Monthly</p>
+        <p className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">Live from database</p>
         <h1 className="text-2xl font-black tracking-tight">Analytics & Insights</h1>
       </div>
 
-      {/* Hero metric */}
-      <div className="glass mt-4 overflow-hidden rounded-3xl p-5">
-        <div className="flex items-center justify-between">
-          <div>
-            <p className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">Safety Index · November</p>
-            <p className="mt-1 text-5xl font-black text-electric">89<span className="text-xl text-muted-foreground">/100</span></p>
-            <p className="mt-1 text-[11px] font-bold uppercase tracking-wider text-success">▲ Top 12% of riders</p>
+      {isLoading ? (
+        <Skeleton className="mt-4 h-40 w-full rounded-3xl" />
+      ) : (
+        <div className="glass mt-4 overflow-hidden rounded-3xl p-5">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">Safety index</p>
+              <p className="mt-1 text-5xl font-black text-electric">
+                {driver?.safety_score ?? "—"}
+                <span className="text-xl text-muted-foreground">/100</span>
+              </p>
+              <p className="mt-1 text-[11px] font-bold uppercase tracking-wider text-success">
+                Trend {driver?.weekly_trend ?? "—"}
+              </p>
+            </div>
+            <div className="grid h-20 w-20 place-items-center rounded-2xl bg-electric/15">
+              <Trophy className="h-10 w-10 text-safety" />
+            </div>
           </div>
-          <div className="grid h-20 w-20 place-items-center rounded-2xl bg-electric/15">
-            <Trophy className="h-10 w-10 text-safety" />
-          </div>
+          {scores.length > 0 && (
+            <svg viewBox="0 0 300 60" className="mt-4 h-14 w-full">
+              <path d={`M${sparkPoints}`} stroke="oklch(0.72 0.20 235)" strokeWidth="2" fill="none" />
+            </svg>
+          )}
         </div>
-        {/* mini sparkline */}
-        <svg viewBox="0 0 300 60" className="mt-4 h-14 w-full">
-          <defs>
-            <linearGradient id="sp" x1="0" x2="0" y1="0" y2="1">
-              <stop offset="0" stopColor="oklch(0.72 0.20 235)" stopOpacity="0.5" />
-              <stop offset="1" stopColor="oklch(0.72 0.20 235)" stopOpacity="0" />
-            </linearGradient>
-          </defs>
-          <path d="M0,40 L25,32 L50,38 L75,22 L100,28 L125,18 L150,24 L175,12 L200,20 L225,8 L250,14 L275,6 L300,10 L300,60 L0,60 Z" fill="url(#sp)" />
-          <path d="M0,40 L25,32 L50,38 L75,22 L100,28 L125,18 L150,24 L175,12 L200,20 L225,8 L250,14 L275,6 L300,10" stroke="oklch(0.72 0.20 235)" strokeWidth="2" fill="none" />
-        </svg>
-      </div>
+      )}
 
       <div className="mt-3 grid grid-cols-2 gap-3">
-        <Stat icon={<Gauge className="h-5 w-5 text-electric" />} label="Avg Speed" value="42 km/h" delta="−3" />
-        <Stat icon={<Fuel className="h-5 w-5 text-safety" />} label="Fuel Cost" value="₹3,824" delta="−12%" />
-        <Stat icon={<ShieldCheck className="h-5 w-5 text-success" />} label="Safe Trips" value="46 / 51" delta="+4" />
-        <Stat icon={<AlertTriangle className="h-5 w-5 text-emergency" />} label="Risk Alerts" value="7" delta="−2" />
+        <Stat
+          icon={<Gauge className="h-5 w-5 text-electric" />}
+          label="Total trips"
+          value={String(driver?.total_trips ?? 0)}
+        />
+        <Stat
+          icon={<ShieldCheck className="h-5 w-5 text-success" />}
+          label="Distance"
+          value={`${driver?.total_distance_km ?? 0} km`}
+        />
+        <Stat
+          icon={<AlertTriangle className="h-5 w-5 text-emergency" />}
+          label="Drowsy alerts"
+          value={String(drowsy?.high_alerts ?? 0)}
+        />
+        <Stat
+          icon={<AlertTriangle className="h-5 w-5 text-emergency" />}
+          label="Crash events"
+          value={String(crash?.total_crashes ?? 0)}
+        />
       </div>
 
       <div className="glass mt-4 rounded-2xl p-4">
-        <p className="text-[11px] uppercase tracking-wider text-muted-foreground">Achievements</p>
-        <div className="mt-3 flex flex-wrap gap-2">
-          {["7-day streak", "Zero harsh brake", "Night rider", "Community helper", "Pothole hunter"].map((b) => (
-            <span key={b} className="rounded-full bg-electric/15 px-3 py-1 text-[11px] font-bold text-electric">★ {b}</span>
-          ))}
-        </div>
+        <p className="text-[11px] font-bold uppercase text-muted-foreground">Trends (database)</p>
+        <p className="mt-2 text-sm">Rides logged: {(trends?.ride_trends ?? []).length}</p>
+        <p className="text-sm">Reward events: {(trends?.rewards_trends ?? []).length}</p>
+        <p className="text-sm">Behavior — harsh braking: {safety?.harsh_braking_total ?? 0}</p>
+      </div>
+
+      <div className="mt-3 grid grid-cols-2 gap-2">
+        <Link to="/driving-score" className="glass rounded-xl p-3 text-center text-xs font-bold text-electric">
+          Driving Score →
+        </Link>
+        <Link to="/features" className="glass rounded-xl p-3 text-center text-xs font-bold">
+          All Modules →
+        </Link>
       </div>
     </MobileShell>
   );
 }
 
-function Stat({ icon, label, value, delta }: { icon: React.ReactNode; label: string; value: string; delta: string }) {
-  const positive = !delta.startsWith("−") && !delta.startsWith("-");
+function Stat({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
   return (
     <div className="glass rounded-2xl p-3.5">
       <div className="grid h-9 w-9 place-items-center rounded-xl bg-secondary/60">{icon}</div>
       <p className="mt-2 text-[10px] uppercase tracking-wider text-muted-foreground">{label}</p>
       <p className="text-lg font-black">{value}</p>
-      <p className={`text-[11px] font-bold ${positive ? "text-emergency" : "text-success"}`}>{delta}</p>
     </div>
   );
 }

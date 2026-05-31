@@ -2,11 +2,12 @@ import { createFileRoute } from "@tanstack/react-router";
 import { MobileShell } from "@/components/MobileShell";
 import { StatusBar } from "@/components/cockpit/StatusBar";
 import { DestinationSearch } from "@/components/cockpit/DestinationSearch";
-import { CockpitMap } from "@/components/cockpit/CockpitMap";
+import { LiveMap } from "@/components/map/LiveMap";
 import { RouteToggle } from "@/components/cockpit/RouteToggle";
 import { EmergencyTrio } from "@/components/cockpit/EmergencyTrio";
-import { InfoCards } from "@/components/cockpit/InfoCards";
-import { VehiclePanel } from "@/components/cockpit/VehiclePanel";
+import { HomeHero } from "@/components/home/HomeHero";
+import { FeatureGrid } from "@/components/home/FeatureGrid";
+import { RouteBoundary } from "@/components/system/RouteBoundary";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -23,13 +24,15 @@ export const Route = createFileRoute("/")({
 function Home() {
   return (
     <MobileShell>
-      <StatusBar />
-      <DestinationSearch />
-      <CockpitMap />
-      <RouteToggle />
-      <EmergencyTrio />
-      <VehiclePanel />
-      <InfoCards />
+      <RouteBoundary title="Home">
+        <StatusBar />
+        <HomeHero />
+        <EmergencyTrio />
+        <FeatureGrid />
+        <DestinationSearch />
+        <LiveMap />
+        <RouteToggle />
+      </RouteBoundary>
     </MobileShell>
   );
 }

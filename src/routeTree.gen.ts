@@ -9,15 +9,80 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WomenSafetyRouteImport } from './routes/women-safety'
+import { Route as VoiceDistressRouteImport } from './routes/voice-distress'
+import { Route as VehiclesRouteImport } from './routes/vehicles'
 import { Route as TripsRouteImport } from './routes/trips'
+import { Route as SystemRouteImport } from './routes/system'
+import { Route as SplashRouteImport } from './routes/splash'
 import { Route as SosRouteImport } from './routes/sos'
+import { Route as SignupRouteImport } from './routes/signup'
+import { Route as SettingsRouteImport } from './routes/settings'
+import { Route as SafetyScoreRouteImport } from './routes/safety-score'
+import { Route as SafetyCenterRouteImport } from './routes/safety-center'
+import { Route as SafeRouteEngineRouteImport } from './routes/safe-route-engine'
+import { Route as RideTrackerRouteImport } from './routes/ride-tracker'
+import { Route as RewardsRouteImport } from './routes/rewards'
 import { Route as ReportsRouteImport } from './routes/reports'
+import { Route as RegisterRouteImport } from './routes/register'
+import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as PetrolRouteImport } from './routes/petrol'
+import { Route as OnboardingRouteImport } from './routes/onboarding'
+import { Route as NotificationsRouteImport } from './routes/notifications'
+import { Route as NavigationHubRouteImport } from './routes/navigation-hub'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as LiveRiskMapRouteImport } from './routes/live-risk-map'
+import { Route as LeaderboardRouteImport } from './routes/leaderboard'
+import { Route as InsuranceRouteImport } from './routes/insurance'
+import { Route as HistoryRouteImport } from './routes/history'
+import { Route as HazardsRouteImport } from './routes/hazards'
+import { Route as GuardianRouteImport } from './routes/guardian'
+import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
+import { Route as FeaturesRouteImport } from './routes/features'
+import { Route as EmergencySosRouteImport } from './routes/emergency-sos'
+import { Route as DrivingScoreRouteImport } from './routes/driving-score'
+import { Route as DevicesRouteImport } from './routes/devices'
 import { Route as CommunityRouteImport } from './routes/community'
+import { Route as AssistantRouteImport } from './routes/assistant'
+import { Route as AnalyticsRouteImport } from './routes/analytics'
+import { Route as AiRouteImport } from './routes/ai'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ProfileSettingsRouteImport } from './routes/profile.settings'
+import { Route as ProfileEmergencyContactsRouteImport } from './routes/profile.emergency-contacts'
+import { Route as ProfileEditRouteImport } from './routes/profile.edit'
+import { Route as FeaturesSlugRouteImport } from './routes/features.$slug'
+import { Route as CommunityPostIdRouteImport } from './routes/community.$postId'
+import { Route as AiModuleRouteImport } from './routes/ai.$module'
 
+const WomenSafetyRoute = WomenSafetyRouteImport.update({
+  id: '/women-safety',
+  path: '/women-safety',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VoiceDistressRoute = VoiceDistressRouteImport.update({
+  id: '/voice-distress',
+  path: '/voice-distress',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VehiclesRoute = VehiclesRouteImport.update({
+  id: '/vehicles',
+  path: '/vehicles',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TripsRoute = TripsRouteImport.update({
   id: '/trips',
   path: '/trips',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SystemRoute = SystemRouteImport.update({
+  id: '/system',
+  path: '/system',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SplashRoute = SplashRouteImport.update({
+  id: '/splash',
+  path: '/splash',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SosRoute = SosRouteImport.update({
@@ -25,9 +90,134 @@ const SosRoute = SosRouteImport.update({
   path: '/sos',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SignupRoute = SignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SafetyScoreRoute = SafetyScoreRouteImport.update({
+  id: '/safety-score',
+  path: '/safety-score',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SafetyCenterRoute = SafetyCenterRouteImport.update({
+  id: '/safety-center',
+  path: '/safety-center',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SafeRouteEngineRoute = SafeRouteEngineRouteImport.update({
+  id: '/safe-route-engine',
+  path: '/safe-route-engine',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RideTrackerRoute = RideTrackerRouteImport.update({
+  id: '/ride-tracker',
+  path: '/ride-tracker',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RewardsRoute = RewardsRouteImport.update({
+  id: '/rewards',
+  path: '/rewards',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ReportsRoute = ReportsRouteImport.update({
   id: '/reports',
   path: '/reports',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RegisterRoute = RegisterRouteImport.update({
+  id: '/register',
+  path: '/register',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileRoute = ProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PetrolRoute = PetrolRouteImport.update({
+  id: '/petrol',
+  path: '/petrol',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OnboardingRoute = OnboardingRouteImport.update({
+  id: '/onboarding',
+  path: '/onboarding',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NotificationsRoute = NotificationsRouteImport.update({
+  id: '/notifications',
+  path: '/notifications',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NavigationHubRoute = NavigationHubRouteImport.update({
+  id: '/navigation-hub',
+  path: '/navigation-hub',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LiveRiskMapRoute = LiveRiskMapRouteImport.update({
+  id: '/live-risk-map',
+  path: '/live-risk-map',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LeaderboardRoute = LeaderboardRouteImport.update({
+  id: '/leaderboard',
+  path: '/leaderboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InsuranceRoute = InsuranceRouteImport.update({
+  id: '/insurance',
+  path: '/insurance',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HistoryRoute = HistoryRouteImport.update({
+  id: '/history',
+  path: '/history',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HazardsRoute = HazardsRouteImport.update({
+  id: '/hazards',
+  path: '/hazards',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GuardianRoute = GuardianRouteImport.update({
+  id: '/guardian',
+  path: '/guardian',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ForgotPasswordRoute = ForgotPasswordRouteImport.update({
+  id: '/forgot-password',
+  path: '/forgot-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FeaturesRoute = FeaturesRouteImport.update({
+  id: '/features',
+  path: '/features',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EmergencySosRoute = EmergencySosRouteImport.update({
+  id: '/emergency-sos',
+  path: '/emergency-sos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DrivingScoreRoute = DrivingScoreRouteImport.update({
+  id: '/driving-score',
+  path: '/driving-score',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DevicesRoute = DevicesRouteImport.update({
+  id: '/devices',
+  path: '/devices',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CommunityRoute = CommunityRouteImport.update({
@@ -35,57 +225,433 @@ const CommunityRoute = CommunityRouteImport.update({
   path: '/community',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AssistantRoute = AssistantRouteImport.update({
+  id: '/assistant',
+  path: '/assistant',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AnalyticsRoute = AnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AiRoute = AiRouteImport.update({
+  id: '/ai',
+  path: '/ai',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProfileSettingsRoute = ProfileSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => ProfileRoute,
+} as any)
+const ProfileEmergencyContactsRoute =
+  ProfileEmergencyContactsRouteImport.update({
+    id: '/emergency-contacts',
+    path: '/emergency-contacts',
+    getParentRoute: () => ProfileRoute,
+  } as any)
+const ProfileEditRoute = ProfileEditRouteImport.update({
+  id: '/edit',
+  path: '/edit',
+  getParentRoute: () => ProfileRoute,
+} as any)
+const FeaturesSlugRoute = FeaturesSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => FeaturesRoute,
+} as any)
+const CommunityPostIdRoute = CommunityPostIdRouteImport.update({
+  id: '/$postId',
+  path: '/$postId',
+  getParentRoute: () => CommunityRoute,
+} as any)
+const AiModuleRoute = AiModuleRouteImport.update({
+  id: '/$module',
+  path: '/$module',
+  getParentRoute: () => AiRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/community': typeof CommunityRoute
+  '/admin': typeof AdminRoute
+  '/ai': typeof AiRouteWithChildren
+  '/analytics': typeof AnalyticsRoute
+  '/assistant': typeof AssistantRoute
+  '/community': typeof CommunityRouteWithChildren
+  '/devices': typeof DevicesRoute
+  '/driving-score': typeof DrivingScoreRoute
+  '/emergency-sos': typeof EmergencySosRoute
+  '/features': typeof FeaturesRouteWithChildren
+  '/forgot-password': typeof ForgotPasswordRoute
+  '/guardian': typeof GuardianRoute
+  '/hazards': typeof HazardsRoute
+  '/history': typeof HistoryRoute
+  '/insurance': typeof InsuranceRoute
+  '/leaderboard': typeof LeaderboardRoute
+  '/live-risk-map': typeof LiveRiskMapRoute
+  '/login': typeof LoginRoute
+  '/navigation-hub': typeof NavigationHubRoute
+  '/notifications': typeof NotificationsRoute
+  '/onboarding': typeof OnboardingRoute
+  '/petrol': typeof PetrolRoute
+  '/profile': typeof ProfileRouteWithChildren
+  '/register': typeof RegisterRoute
   '/reports': typeof ReportsRoute
+  '/rewards': typeof RewardsRoute
+  '/ride-tracker': typeof RideTrackerRoute
+  '/safe-route-engine': typeof SafeRouteEngineRoute
+  '/safety-center': typeof SafetyCenterRoute
+  '/safety-score': typeof SafetyScoreRoute
+  '/settings': typeof SettingsRoute
+  '/signup': typeof SignupRoute
   '/sos': typeof SosRoute
+  '/splash': typeof SplashRoute
+  '/system': typeof SystemRoute
   '/trips': typeof TripsRoute
+  '/vehicles': typeof VehiclesRoute
+  '/voice-distress': typeof VoiceDistressRoute
+  '/women-safety': typeof WomenSafetyRoute
+  '/ai/$module': typeof AiModuleRoute
+  '/community/$postId': typeof CommunityPostIdRoute
+  '/features/$slug': typeof FeaturesSlugRoute
+  '/profile/edit': typeof ProfileEditRoute
+  '/profile/emergency-contacts': typeof ProfileEmergencyContactsRoute
+  '/profile/settings': typeof ProfileSettingsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/community': typeof CommunityRoute
+  '/admin': typeof AdminRoute
+  '/ai': typeof AiRouteWithChildren
+  '/analytics': typeof AnalyticsRoute
+  '/assistant': typeof AssistantRoute
+  '/community': typeof CommunityRouteWithChildren
+  '/devices': typeof DevicesRoute
+  '/driving-score': typeof DrivingScoreRoute
+  '/emergency-sos': typeof EmergencySosRoute
+  '/features': typeof FeaturesRouteWithChildren
+  '/forgot-password': typeof ForgotPasswordRoute
+  '/guardian': typeof GuardianRoute
+  '/hazards': typeof HazardsRoute
+  '/history': typeof HistoryRoute
+  '/insurance': typeof InsuranceRoute
+  '/leaderboard': typeof LeaderboardRoute
+  '/live-risk-map': typeof LiveRiskMapRoute
+  '/login': typeof LoginRoute
+  '/navigation-hub': typeof NavigationHubRoute
+  '/notifications': typeof NotificationsRoute
+  '/onboarding': typeof OnboardingRoute
+  '/petrol': typeof PetrolRoute
+  '/profile': typeof ProfileRouteWithChildren
+  '/register': typeof RegisterRoute
   '/reports': typeof ReportsRoute
+  '/rewards': typeof RewardsRoute
+  '/ride-tracker': typeof RideTrackerRoute
+  '/safe-route-engine': typeof SafeRouteEngineRoute
+  '/safety-center': typeof SafetyCenterRoute
+  '/safety-score': typeof SafetyScoreRoute
+  '/settings': typeof SettingsRoute
+  '/signup': typeof SignupRoute
   '/sos': typeof SosRoute
+  '/splash': typeof SplashRoute
+  '/system': typeof SystemRoute
   '/trips': typeof TripsRoute
+  '/vehicles': typeof VehiclesRoute
+  '/voice-distress': typeof VoiceDistressRoute
+  '/women-safety': typeof WomenSafetyRoute
+  '/ai/$module': typeof AiModuleRoute
+  '/community/$postId': typeof CommunityPostIdRoute
+  '/features/$slug': typeof FeaturesSlugRoute
+  '/profile/edit': typeof ProfileEditRoute
+  '/profile/emergency-contacts': typeof ProfileEmergencyContactsRoute
+  '/profile/settings': typeof ProfileSettingsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/community': typeof CommunityRoute
+  '/admin': typeof AdminRoute
+  '/ai': typeof AiRouteWithChildren
+  '/analytics': typeof AnalyticsRoute
+  '/assistant': typeof AssistantRoute
+  '/community': typeof CommunityRouteWithChildren
+  '/devices': typeof DevicesRoute
+  '/driving-score': typeof DrivingScoreRoute
+  '/emergency-sos': typeof EmergencySosRoute
+  '/features': typeof FeaturesRouteWithChildren
+  '/forgot-password': typeof ForgotPasswordRoute
+  '/guardian': typeof GuardianRoute
+  '/hazards': typeof HazardsRoute
+  '/history': typeof HistoryRoute
+  '/insurance': typeof InsuranceRoute
+  '/leaderboard': typeof LeaderboardRoute
+  '/live-risk-map': typeof LiveRiskMapRoute
+  '/login': typeof LoginRoute
+  '/navigation-hub': typeof NavigationHubRoute
+  '/notifications': typeof NotificationsRoute
+  '/onboarding': typeof OnboardingRoute
+  '/petrol': typeof PetrolRoute
+  '/profile': typeof ProfileRouteWithChildren
+  '/register': typeof RegisterRoute
   '/reports': typeof ReportsRoute
+  '/rewards': typeof RewardsRoute
+  '/ride-tracker': typeof RideTrackerRoute
+  '/safe-route-engine': typeof SafeRouteEngineRoute
+  '/safety-center': typeof SafetyCenterRoute
+  '/safety-score': typeof SafetyScoreRoute
+  '/settings': typeof SettingsRoute
+  '/signup': typeof SignupRoute
   '/sos': typeof SosRoute
+  '/splash': typeof SplashRoute
+  '/system': typeof SystemRoute
   '/trips': typeof TripsRoute
+  '/vehicles': typeof VehiclesRoute
+  '/voice-distress': typeof VoiceDistressRoute
+  '/women-safety': typeof WomenSafetyRoute
+  '/ai/$module': typeof AiModuleRoute
+  '/community/$postId': typeof CommunityPostIdRoute
+  '/features/$slug': typeof FeaturesSlugRoute
+  '/profile/edit': typeof ProfileEditRoute
+  '/profile/emergency-contacts': typeof ProfileEmergencyContactsRoute
+  '/profile/settings': typeof ProfileSettingsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/community' | '/reports' | '/sos' | '/trips'
+  fullPaths:
+    | '/'
+    | '/admin'
+    | '/ai'
+    | '/analytics'
+    | '/assistant'
+    | '/community'
+    | '/devices'
+    | '/driving-score'
+    | '/emergency-sos'
+    | '/features'
+    | '/forgot-password'
+    | '/guardian'
+    | '/hazards'
+    | '/history'
+    | '/insurance'
+    | '/leaderboard'
+    | '/live-risk-map'
+    | '/login'
+    | '/navigation-hub'
+    | '/notifications'
+    | '/onboarding'
+    | '/petrol'
+    | '/profile'
+    | '/register'
+    | '/reports'
+    | '/rewards'
+    | '/ride-tracker'
+    | '/safe-route-engine'
+    | '/safety-center'
+    | '/safety-score'
+    | '/settings'
+    | '/signup'
+    | '/sos'
+    | '/splash'
+    | '/system'
+    | '/trips'
+    | '/vehicles'
+    | '/voice-distress'
+    | '/women-safety'
+    | '/ai/$module'
+    | '/community/$postId'
+    | '/features/$slug'
+    | '/profile/edit'
+    | '/profile/emergency-contacts'
+    | '/profile/settings'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/community' | '/reports' | '/sos' | '/trips'
-  id: '__root__' | '/' | '/community' | '/reports' | '/sos' | '/trips'
+  to:
+    | '/'
+    | '/admin'
+    | '/ai'
+    | '/analytics'
+    | '/assistant'
+    | '/community'
+    | '/devices'
+    | '/driving-score'
+    | '/emergency-sos'
+    | '/features'
+    | '/forgot-password'
+    | '/guardian'
+    | '/hazards'
+    | '/history'
+    | '/insurance'
+    | '/leaderboard'
+    | '/live-risk-map'
+    | '/login'
+    | '/navigation-hub'
+    | '/notifications'
+    | '/onboarding'
+    | '/petrol'
+    | '/profile'
+    | '/register'
+    | '/reports'
+    | '/rewards'
+    | '/ride-tracker'
+    | '/safe-route-engine'
+    | '/safety-center'
+    | '/safety-score'
+    | '/settings'
+    | '/signup'
+    | '/sos'
+    | '/splash'
+    | '/system'
+    | '/trips'
+    | '/vehicles'
+    | '/voice-distress'
+    | '/women-safety'
+    | '/ai/$module'
+    | '/community/$postId'
+    | '/features/$slug'
+    | '/profile/edit'
+    | '/profile/emergency-contacts'
+    | '/profile/settings'
+  id:
+    | '__root__'
+    | '/'
+    | '/admin'
+    | '/ai'
+    | '/analytics'
+    | '/assistant'
+    | '/community'
+    | '/devices'
+    | '/driving-score'
+    | '/emergency-sos'
+    | '/features'
+    | '/forgot-password'
+    | '/guardian'
+    | '/hazards'
+    | '/history'
+    | '/insurance'
+    | '/leaderboard'
+    | '/live-risk-map'
+    | '/login'
+    | '/navigation-hub'
+    | '/notifications'
+    | '/onboarding'
+    | '/petrol'
+    | '/profile'
+    | '/register'
+    | '/reports'
+    | '/rewards'
+    | '/ride-tracker'
+    | '/safe-route-engine'
+    | '/safety-center'
+    | '/safety-score'
+    | '/settings'
+    | '/signup'
+    | '/sos'
+    | '/splash'
+    | '/system'
+    | '/trips'
+    | '/vehicles'
+    | '/voice-distress'
+    | '/women-safety'
+    | '/ai/$module'
+    | '/community/$postId'
+    | '/features/$slug'
+    | '/profile/edit'
+    | '/profile/emergency-contacts'
+    | '/profile/settings'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  CommunityRoute: typeof CommunityRoute
+  AdminRoute: typeof AdminRoute
+  AiRoute: typeof AiRouteWithChildren
+  AnalyticsRoute: typeof AnalyticsRoute
+  AssistantRoute: typeof AssistantRoute
+  CommunityRoute: typeof CommunityRouteWithChildren
+  DevicesRoute: typeof DevicesRoute
+  DrivingScoreRoute: typeof DrivingScoreRoute
+  EmergencySosRoute: typeof EmergencySosRoute
+  FeaturesRoute: typeof FeaturesRouteWithChildren
+  ForgotPasswordRoute: typeof ForgotPasswordRoute
+  GuardianRoute: typeof GuardianRoute
+  HazardsRoute: typeof HazardsRoute
+  HistoryRoute: typeof HistoryRoute
+  InsuranceRoute: typeof InsuranceRoute
+  LeaderboardRoute: typeof LeaderboardRoute
+  LiveRiskMapRoute: typeof LiveRiskMapRoute
+  LoginRoute: typeof LoginRoute
+  NavigationHubRoute: typeof NavigationHubRoute
+  NotificationsRoute: typeof NotificationsRoute
+  OnboardingRoute: typeof OnboardingRoute
+  PetrolRoute: typeof PetrolRoute
+  ProfileRoute: typeof ProfileRouteWithChildren
+  RegisterRoute: typeof RegisterRoute
   ReportsRoute: typeof ReportsRoute
+  RewardsRoute: typeof RewardsRoute
+  RideTrackerRoute: typeof RideTrackerRoute
+  SafeRouteEngineRoute: typeof SafeRouteEngineRoute
+  SafetyCenterRoute: typeof SafetyCenterRoute
+  SafetyScoreRoute: typeof SafetyScoreRoute
+  SettingsRoute: typeof SettingsRoute
+  SignupRoute: typeof SignupRoute
   SosRoute: typeof SosRoute
+  SplashRoute: typeof SplashRoute
+  SystemRoute: typeof SystemRoute
   TripsRoute: typeof TripsRoute
+  VehiclesRoute: typeof VehiclesRoute
+  VoiceDistressRoute: typeof VoiceDistressRoute
+  WomenSafetyRoute: typeof WomenSafetyRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/women-safety': {
+      id: '/women-safety'
+      path: '/women-safety'
+      fullPath: '/women-safety'
+      preLoaderRoute: typeof WomenSafetyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/voice-distress': {
+      id: '/voice-distress'
+      path: '/voice-distress'
+      fullPath: '/voice-distress'
+      preLoaderRoute: typeof VoiceDistressRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/vehicles': {
+      id: '/vehicles'
+      path: '/vehicles'
+      fullPath: '/vehicles'
+      preLoaderRoute: typeof VehiclesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/trips': {
       id: '/trips'
       path: '/trips'
       fullPath: '/trips'
       preLoaderRoute: typeof TripsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/system': {
+      id: '/system'
+      path: '/system'
+      fullPath: '/system'
+      preLoaderRoute: typeof SystemRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/splash': {
+      id: '/splash'
+      path: '/splash'
+      fullPath: '/splash'
+      preLoaderRoute: typeof SplashRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/sos': {
@@ -95,11 +661,186 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SosRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/signup': {
+      id: '/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof SignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/safety-score': {
+      id: '/safety-score'
+      path: '/safety-score'
+      fullPath: '/safety-score'
+      preLoaderRoute: typeof SafetyScoreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/safety-center': {
+      id: '/safety-center'
+      path: '/safety-center'
+      fullPath: '/safety-center'
+      preLoaderRoute: typeof SafetyCenterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/safe-route-engine': {
+      id: '/safe-route-engine'
+      path: '/safe-route-engine'
+      fullPath: '/safe-route-engine'
+      preLoaderRoute: typeof SafeRouteEngineRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ride-tracker': {
+      id: '/ride-tracker'
+      path: '/ride-tracker'
+      fullPath: '/ride-tracker'
+      preLoaderRoute: typeof RideTrackerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/rewards': {
+      id: '/rewards'
+      path: '/rewards'
+      fullPath: '/rewards'
+      preLoaderRoute: typeof RewardsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/reports': {
       id: '/reports'
       path: '/reports'
       fullPath: '/reports'
       preLoaderRoute: typeof ReportsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/register': {
+      id: '/register'
+      path: '/register'
+      fullPath: '/register'
+      preLoaderRoute: typeof RegisterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/petrol': {
+      id: '/petrol'
+      path: '/petrol'
+      fullPath: '/petrol'
+      preLoaderRoute: typeof PetrolRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/onboarding': {
+      id: '/onboarding'
+      path: '/onboarding'
+      fullPath: '/onboarding'
+      preLoaderRoute: typeof OnboardingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/notifications': {
+      id: '/notifications'
+      path: '/notifications'
+      fullPath: '/notifications'
+      preLoaderRoute: typeof NotificationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/navigation-hub': {
+      id: '/navigation-hub'
+      path: '/navigation-hub'
+      fullPath: '/navigation-hub'
+      preLoaderRoute: typeof NavigationHubRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/live-risk-map': {
+      id: '/live-risk-map'
+      path: '/live-risk-map'
+      fullPath: '/live-risk-map'
+      preLoaderRoute: typeof LiveRiskMapRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/leaderboard': {
+      id: '/leaderboard'
+      path: '/leaderboard'
+      fullPath: '/leaderboard'
+      preLoaderRoute: typeof LeaderboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/insurance': {
+      id: '/insurance'
+      path: '/insurance'
+      fullPath: '/insurance'
+      preLoaderRoute: typeof InsuranceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/history': {
+      id: '/history'
+      path: '/history'
+      fullPath: '/history'
+      preLoaderRoute: typeof HistoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/hazards': {
+      id: '/hazards'
+      path: '/hazards'
+      fullPath: '/hazards'
+      preLoaderRoute: typeof HazardsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/guardian': {
+      id: '/guardian'
+      path: '/guardian'
+      fullPath: '/guardian'
+      preLoaderRoute: typeof GuardianRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/forgot-password': {
+      id: '/forgot-password'
+      path: '/forgot-password'
+      fullPath: '/forgot-password'
+      preLoaderRoute: typeof ForgotPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/features': {
+      id: '/features'
+      path: '/features'
+      fullPath: '/features'
+      preLoaderRoute: typeof FeaturesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/emergency-sos': {
+      id: '/emergency-sos'
+      path: '/emergency-sos'
+      fullPath: '/emergency-sos'
+      preLoaderRoute: typeof EmergencySosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/driving-score': {
+      id: '/driving-score'
+      path: '/driving-score'
+      fullPath: '/driving-score'
+      preLoaderRoute: typeof DrivingScoreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/devices': {
+      id: '/devices'
+      path: '/devices'
+      fullPath: '/devices'
+      preLoaderRoute: typeof DevicesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/community': {
@@ -109,6 +850,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CommunityRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/assistant': {
+      id: '/assistant'
+      path: '/assistant'
+      fullPath: '/assistant'
+      preLoaderRoute: typeof AssistantRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/analytics': {
+      id: '/analytics'
+      path: '/analytics'
+      fullPath: '/analytics'
+      preLoaderRoute: typeof AnalyticsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ai': {
+      id: '/ai'
+      path: '/ai'
+      fullPath: '/ai'
+      preLoaderRoute: typeof AiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -116,16 +885,151 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/profile/settings': {
+      id: '/profile/settings'
+      path: '/settings'
+      fullPath: '/profile/settings'
+      preLoaderRoute: typeof ProfileSettingsRouteImport
+      parentRoute: typeof ProfileRoute
+    }
+    '/profile/emergency-contacts': {
+      id: '/profile/emergency-contacts'
+      path: '/emergency-contacts'
+      fullPath: '/profile/emergency-contacts'
+      preLoaderRoute: typeof ProfileEmergencyContactsRouteImport
+      parentRoute: typeof ProfileRoute
+    }
+    '/profile/edit': {
+      id: '/profile/edit'
+      path: '/edit'
+      fullPath: '/profile/edit'
+      preLoaderRoute: typeof ProfileEditRouteImport
+      parentRoute: typeof ProfileRoute
+    }
+    '/features/$slug': {
+      id: '/features/$slug'
+      path: '/$slug'
+      fullPath: '/features/$slug'
+      preLoaderRoute: typeof FeaturesSlugRouteImport
+      parentRoute: typeof FeaturesRoute
+    }
+    '/community/$postId': {
+      id: '/community/$postId'
+      path: '/$postId'
+      fullPath: '/community/$postId'
+      preLoaderRoute: typeof CommunityPostIdRouteImport
+      parentRoute: typeof CommunityRoute
+    }
+    '/ai/$module': {
+      id: '/ai/$module'
+      path: '/$module'
+      fullPath: '/ai/$module'
+      preLoaderRoute: typeof AiModuleRouteImport
+      parentRoute: typeof AiRoute
+    }
   }
 }
 
+interface AiRouteChildren {
+  AiModuleRoute: typeof AiModuleRoute
+}
+
+const AiRouteChildren: AiRouteChildren = {
+  AiModuleRoute: AiModuleRoute,
+}
+
+const AiRouteWithChildren = AiRoute._addFileChildren(AiRouteChildren)
+
+interface CommunityRouteChildren {
+  CommunityPostIdRoute: typeof CommunityPostIdRoute
+}
+
+const CommunityRouteChildren: CommunityRouteChildren = {
+  CommunityPostIdRoute: CommunityPostIdRoute,
+}
+
+const CommunityRouteWithChildren = CommunityRoute._addFileChildren(
+  CommunityRouteChildren,
+)
+
+interface FeaturesRouteChildren {
+  FeaturesSlugRoute: typeof FeaturesSlugRoute
+}
+
+const FeaturesRouteChildren: FeaturesRouteChildren = {
+  FeaturesSlugRoute: FeaturesSlugRoute,
+}
+
+const FeaturesRouteWithChildren = FeaturesRoute._addFileChildren(
+  FeaturesRouteChildren,
+)
+
+interface ProfileRouteChildren {
+  ProfileEditRoute: typeof ProfileEditRoute
+  ProfileEmergencyContactsRoute: typeof ProfileEmergencyContactsRoute
+  ProfileSettingsRoute: typeof ProfileSettingsRoute
+}
+
+const ProfileRouteChildren: ProfileRouteChildren = {
+  ProfileEditRoute: ProfileEditRoute,
+  ProfileEmergencyContactsRoute: ProfileEmergencyContactsRoute,
+  ProfileSettingsRoute: ProfileSettingsRoute,
+}
+
+const ProfileRouteWithChildren =
+  ProfileRoute._addFileChildren(ProfileRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  CommunityRoute: CommunityRoute,
+  AdminRoute: AdminRoute,
+  AiRoute: AiRouteWithChildren,
+  AnalyticsRoute: AnalyticsRoute,
+  AssistantRoute: AssistantRoute,
+  CommunityRoute: CommunityRouteWithChildren,
+  DevicesRoute: DevicesRoute,
+  DrivingScoreRoute: DrivingScoreRoute,
+  EmergencySosRoute: EmergencySosRoute,
+  FeaturesRoute: FeaturesRouteWithChildren,
+  ForgotPasswordRoute: ForgotPasswordRoute,
+  GuardianRoute: GuardianRoute,
+  HazardsRoute: HazardsRoute,
+  HistoryRoute: HistoryRoute,
+  InsuranceRoute: InsuranceRoute,
+  LeaderboardRoute: LeaderboardRoute,
+  LiveRiskMapRoute: LiveRiskMapRoute,
+  LoginRoute: LoginRoute,
+  NavigationHubRoute: NavigationHubRoute,
+  NotificationsRoute: NotificationsRoute,
+  OnboardingRoute: OnboardingRoute,
+  PetrolRoute: PetrolRoute,
+  ProfileRoute: ProfileRouteWithChildren,
+  RegisterRoute: RegisterRoute,
   ReportsRoute: ReportsRoute,
+  RewardsRoute: RewardsRoute,
+  RideTrackerRoute: RideTrackerRoute,
+  SafeRouteEngineRoute: SafeRouteEngineRoute,
+  SafetyCenterRoute: SafetyCenterRoute,
+  SafetyScoreRoute: SafetyScoreRoute,
+  SettingsRoute: SettingsRoute,
+  SignupRoute: SignupRoute,
   SosRoute: SosRoute,
+  SplashRoute: SplashRoute,
+  SystemRoute: SystemRoute,
   TripsRoute: TripsRoute,
+  VehiclesRoute: VehiclesRoute,
+  VoiceDistressRoute: VoiceDistressRoute,
+  WomenSafetyRoute: WomenSafetyRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}

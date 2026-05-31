@@ -19,17 +19,31 @@ export function EmergencyTrio() {
         </div>
       </Link>
 
-      <button className="relative overflow-hidden rounded-3xl bg-safety-grad p-4 text-left text-[oklch(0.18_0.05_60)]">
+      <Link
+        to="/women-safety"
+        className="relative overflow-hidden rounded-3xl bg-safety-grad p-4 text-left text-[oklch(0.18_0.05_60)]"
+      >
         <ShieldAlert className="h-6 w-6" strokeWidth={2.4} />
-        <p className="mt-2 text-sm font-black leading-tight">WOMEN SAFETY<br/>SHIELD</p>
+        <p className="mt-2 text-sm font-black leading-tight">
+          WOMEN SAFETY
+          <br />
+          SHIELD
+        </p>
         <p className="mt-1 text-[10px] font-semibold uppercase tracking-wider opacity-80">Live tracking · Record</p>
-      </button>
+      </Link>
 
-      <button className="relative overflow-hidden rounded-3xl bg-electric-grad p-4 text-left text-primary-foreground">
+      <Link
+        to="/voice-distress"
+        className="relative overflow-hidden rounded-3xl bg-electric-grad p-4 text-left text-primary-foreground"
+      >
         <Mic className="h-6 w-6" strokeWidth={2.4} />
-        <p className="mt-2 text-sm font-black leading-tight">VOICE<br/>DISTRESS</p>
+        <p className="mt-2 text-sm font-black leading-tight">
+          VOICE
+          <br />
+          DISTRESS
+        </p>
         <p className="mt-1 text-[10px] font-semibold uppercase tracking-wider opacity-80">Help me · Emergency</p>
-      </button>
+      </Link>
     </div>
   );
 }

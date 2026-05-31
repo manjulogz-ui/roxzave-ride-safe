@@ -1,7 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { MobileShell } from "@/components/MobileShell";
-import { ArrowLeft, Phone, MapPin, HeartPulse, Droplet } from "lucide-react";
+import { ArrowLeft, Phone, MapPin, HeartPulse, Droplet, MessageSquare, Share2 } from "lucide-react";
+import { api } from "@/lib/api/client";
+import { useAuth } from "@/lib/auth/AuthProvider";
 
 export const Route = createFileRoute("/sos")({
   head: () => ({
@@ -14,15 +17,57 @@ export const Route = createFileRoute("/sos")({
 });
 
 function SOSPage() {
+  const { isAuthenticated } = useAuth();
   const [holding, setHolding] = useState(false);
   const [countdown, setCountdown] = useState<number | null>(null);
   const [sent, setSent] = useState(false);
+  const [location, setLocation] = useState<{ lat: number; lng: number } | null>(null);
+
+  useEffect(() => {
+    navigator.geolocation?.getCurrentPosition((pos) => {
+      setLocation({ lat: pos.coords.latitude, lng: pos.coords.longitude });
+    });
+  }, []);
+
+  const { data: emergencyNumbers } = useQuery({
+    queryKey: ["emergency-numbers"],
+    queryFn: async () => (await api.get<{ name: string; phone: string }[]>("/api/sos/emergency-numbers")).data,
+  });
+
+  const { data: contacts } = useQuery({
+    queryKey: ["emergency-contacts"],
+    queryFn: async () => {
+      try {
+        return (await api.get<{ name: string; phone: string }[]>("/api/user/emergency-contacts")).data;
+      } catch {
+        return [];
+      }
+    },
+    enabled: isAuthenticated,
+  });
+
+  const triggerSos = useMutation({
+    mutationFn: async () => {
+      const { data } = await api.post("/api/sos", {
+        lat: location?.lat,
+        lng: location?.lng,
+        trigger_type: "manual",
+      });
+      return data;
+    },
+    onSuccess: () => setSent(true),
+  });
 
   useEffect(() => {
     if (countdown === null) return;
-    if (countdown <= 0) { setSent(true); setCountdown(null); return; }
+    if (countdown <= 0) {
+      void triggerSos.mutateAsync();
+      setCountdown(null);
+      return;
+    }
     const t = setTimeout(() => setCountdown((c) => (c ?? 1) - 1), 1000);
     return () => clearTimeout(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- mutate on countdown expiry only
   }, [countdown]);
 
   function trigger() {
@@ -31,21 +76,31 @@ function SOSPage() {
     setSent(false);
   }
 
+  const allContacts = [
+    ...(contacts ?? []).map((c) => ({ name: c.name, phone: c.phone })),
+    ...(emergencyNumbers ?? []),
+  ];
+
+  const locationText = location ? `${location.lat},${location.lng}` : "";
+
   return (
     <MobileShell>
       <div className="flex items-center justify-between pt-2">
-        <Link to="/" className="glass grid h-10 w-10 place-items-center rounded-xl"><ArrowLeft className="h-5 w-5" /></Link>
-        <p className="text-sm font-bold uppercase tracking-[0.18em] text-emergency">Emergency Mode</p>
+        <Link to="/" className="glass grid h-10 w-10 place-items-center rounded-xl">
+          <ArrowLeft className="h-5 w-5" />
+        </Link>
+        <p className="text-sm font-bold uppercase tracking-[0.18em] text-emergency">Emergency Center</p>
         <span className="h-10 w-10" />
       </div>
 
       <div className="mt-6 text-center">
         <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground">Tap & hold to activate</p>
-        <p className="mt-1 text-lg font-bold">Sends GPS · Calls guardians · Shares medical profile</p>
+        <p className="mt-1 text-lg font-bold">Sends GPS · Calls guardians · Golden Hour SOS</p>
       </div>
 
       <div className="mt-8 grid place-items-center">
         <button
+          type="button"
           onMouseDown={() => setHolding(true)}
           onMouseUp={() => holding && trigger()}
           onTouchStart={() => setHolding(true)}
@@ -64,6 +119,7 @@ function SOSPage() {
 
         {countdown !== null && (
           <button
+            type="button"
             onClick={() => setCountdown(null)}
             className="mt-5 rounded-full bg-white/10 px-6 py-2 text-sm font-bold uppercase tracking-wider"
           >
@@ -72,36 +128,72 @@ function SOSPage() {
         )}
         {sent && (
           <p className="mt-5 rounded-full bg-success/15 px-4 py-2 text-xs font-bold uppercase tracking-wider text-success">
-            ✓ Alerts dispatched · 2 guardians notified
+            ✓ SOS recorded · Guardians notified
           </p>
         )}
+      </div>
+
+      <div className="mt-6 grid grid-cols-3 gap-2">
+        <a
+          href={locationText ? `sms:?body=EMERGENCY%20https://maps.google.com/?q=${locationText}` : "sms:"}
+          className="glass flex flex-col items-center rounded-2xl p-3 text-center"
+        >
+          <MessageSquare className="h-4 w-4 text-electric" />
+          <span className="mt-1 text-[10px] font-bold uppercase">SMS</span>
+        </a>
+        <a
+          href={locationText ? `https://maps.google.com/?q=${locationText}` : "#"}
+          className="glass flex flex-col items-center rounded-2xl p-3 text-center"
+        >
+          <Share2 className="h-4 w-4 text-electric" />
+          <span className="mt-1 text-[10px] font-bold uppercase">Share GPS</span>
+        </a>
+        <Link to="/guardian" className="glass flex flex-col items-center rounded-2xl p-3 text-center">
+          <MapPin className="h-4 w-4 text-electric" />
+          <span className="mt-1 text-[10px] font-bold uppercase">Tracking</span>
+        </Link>
       </div>
 
       <div className="mt-8">
         <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Emergency Contacts</p>
         <div className="mt-2 space-y-2">
-          {[
-            { name: "Aarav (Father)", phone: "+91 98xxx 11220" },
-            { name: "Riya (Spouse)", phone: "+91 98xxx 87412" },
-            { name: "Local Ambulance · 108", phone: "108" },
-          ].map((c) => (
-            <div key={c.name} className="glass flex items-center justify-between rounded-2xl px-4 py-3">
+          {allContacts.map((c) => (
+            <div key={`${c.name}-${c.phone}`} className="glass flex items-center justify-between rounded-2xl px-4 py-3">
               <div>
                 <p className="text-sm font-bold">{c.name}</p>
                 <p className="text-[11px] text-muted-foreground">{c.phone}</p>
               </div>
-              <button className="grid h-10 w-10 place-items-center rounded-full bg-success/20 text-success">
-                <Phone className="h-4 w-4" />
-              </button>
+              <div className="flex gap-2">
+                <a
+                  href={`tel:${c.phone.replace(/\s/g, "")}`}
+                  className="grid h-10 w-10 place-items-center rounded-full bg-success/20 text-success"
+                  aria-label={`Call ${c.name}`}
+                >
+                  <Phone className="h-4 w-4" />
+                </a>
+                <a
+                  href={`sms:${c.phone.replace(/\s/g, "")}${locationText ? `?body=EMERGENCY%20Location:%20https://maps.google.com/?q=${locationText}` : ""}`}
+                  className="grid h-10 w-10 place-items-center rounded-full bg-electric/20 text-electric"
+                  aria-label={`SMS ${c.name}`}
+                >
+                  <MessageSquare className="h-4 w-4" />
+                </a>
+              </div>
             </div>
           ))}
         </div>
       </div>
 
       <div className="mt-5 grid grid-cols-3 gap-2">
-        <Mini icon={<MapPin className="h-4 w-4" />} label="Share GPS" value="Live" />
-        <Mini icon={<Droplet className="h-4 w-4" />} label="Blood" value="O+" />
-        <Mini icon={<HeartPulse className="h-4 w-4" />} label="Allergies" value="None" />
+        <Mini icon={<MapPin className="h-4 w-4" />} label="Share GPS" value={location ? "Live" : "…"} />
+        <Mini icon={<Droplet className="h-4 w-4" />} label="Blood" value="Profile" />
+        <Link to="/features/$slug" params={{ slug: "trauma-assistant" }} className="glass rounded-2xl p-3 text-center">
+          <div className="mx-auto grid h-8 w-8 place-items-center rounded-lg bg-electric/15 text-electric">
+            <HeartPulse className="h-4 w-4" />
+          </div>
+          <p className="mt-2 text-[10px] uppercase tracking-wider text-muted-foreground">Trauma</p>
+          <p className="text-sm font-bold">Assistant</p>
+        </Link>
       </div>
     </MobileShell>
   );

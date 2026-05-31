@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Roxzave</string>
+    <string name="title_activity_main">Roxzave</string>
+    <string name="package_name">com.roxzave.app</string>
+    <string name="custom_url_scheme">com.roxzave.app</string>
+</resources>
